@@ -1,0 +1,6 @@
+ToolMovingFiles/ToolMovingFiles/obj/
+ToolMovingFiles/ToolMovingFiles/bin/
+*/.suo
+*/.vs/*
+*.vsidx
+ToolMovingFiles/.vs/ToolMovingFiles/v17/.suo
