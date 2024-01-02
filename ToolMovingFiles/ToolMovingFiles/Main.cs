@@ -83,6 +83,12 @@ namespace ToolMovingFiles
             }
         }
 
+        private void txtDesFolder1_Leave(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.pathDes1 = txtDesFolder1.Text;
+            Properties.Settings.Default.Save();
+        }
+
         private void chkCopyPath2_CheckedChanged(object sender, EventArgs e)
         {
             if (!chkCopyPath1.Checked && !chkCopyPath2.Checked && !chkCopyPath3.Checked) btCopy.Enabled = false;
@@ -128,6 +134,12 @@ namespace ToolMovingFiles
             {
                 MessageBox.Show("There was an error during processing.\r\nError detail: " + ex.Message, "Error Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtDesFolder2_Leave(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.pathDes2 = txtDesFolder2.Text;
+            Properties.Settings.Default.Save();
         }
 
         private void chkCopyPath3_CheckedChanged(object sender, EventArgs e)
@@ -177,25 +189,42 @@ namespace ToolMovingFiles
             }
         }
 
+        private void txtDesFolder3_Leave(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.pathDes3 = txtDesFolder3.Text;
+            Properties.Settings.Default.Save();
+        }
+
         private void btCopy_Click(object sender, System.EventArgs e)
         {
             try
             {
                 txtResult.Text = string.Empty;
+
                 if (chkCopyPath1.Checked)
                 {
+                    //Setting ProgressBar Maximum Value
+                    progressBarFolder.Maximum = Directory.GetFiles(txtSouFolder1.Text, "*.*", SearchOption.AllDirectories).Length + Directory.GetDirectories(txtSouFolder1.Text, "**", SearchOption.AllDirectories).Length;
+
+
                     copyAll(txtSouFolder1.Text, txtDesFolder1.Text);
-                    txtResult.Text += "Copy files in folder 1 successfully";
+                    txtResult.Text += "Copy files in folder 1 successfully" + "\r\n";
                 }
                 if (chkCopyPath2.Checked)
                 {
+                    //Setting ProgressBar Maximum Value
+                    progressBarFolder.Maximum = Directory.GetFiles(txtSouFolder2.Text, "*.*", SearchOption.AllDirectories).Length + Directory.GetDirectories(txtSouFolder2.Text, "**", SearchOption.AllDirectories).Length;
+
                     copyAll(txtSouFolder2.Text, txtDesFolder2.Text);
-                    txtResult.Text += "Copy files in folder 2 successfully";
+                    txtResult.Text += "Copy files in folder 2 successfully" + "\r\n";
                 }
                 if (chkCopyPath3.Checked)
                 {
+                    //Setting ProgressBar Maximum Value
+                    progressBarFolder.Maximum = Directory.GetFiles(txtSouFolder3.Text, "*.*", SearchOption.AllDirectories).Length + Directory.GetDirectories(txtSouFolder3.Text, "**", SearchOption.AllDirectories).Length;
+
                     copyAll(txtSouFolder3.Text, txtDesFolder3.Text);
-                    txtResult.Text += "Copy files in folder 3 successfully";
+                    txtResult.Text += "Copy files in folder 3 successfully" + "\r\n";
                 }
             }
             catch (Exception ex)
@@ -244,9 +273,6 @@ namespace ToolMovingFiles
 
         private void copyAll(string sourcePath, string desPath)
         {
-            //Setting ProgressBar Maximum Value
-            progressBarFolder.Maximum = Directory.GetFiles(sourcePath, "*.*", SearchOption.AllDirectories).Length + Directory.GetDirectories(sourcePath, "**", SearchOption.AllDirectories).Length;
-
             if (!Directory.Exists(desPath)) Directory.CreateDirectory(desPath);
             DirectoryInfo source = new DirectoryInfo(sourcePath);
 
@@ -262,6 +288,7 @@ namespace ToolMovingFiles
             {
                 DirectoryInfo target = new DirectoryInfo(desPath);
                 DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
+                updateProgress();
                 copyAll(diSourceSubDir.FullName, nextTargetSubDir.FullName);
             }
         }

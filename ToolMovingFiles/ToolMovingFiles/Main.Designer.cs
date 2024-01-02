@@ -31,6 +31,7 @@ namespace ToolMovingFiles
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkCopyPath1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btDesFolder1 = new System.Windows.Forms.Button();
             this.txtDesFolder1 = new System.Windows.Forms.TextBox();
@@ -39,6 +40,7 @@ namespace ToolMovingFiles
             this.txtSouFolder1 = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkCopyPath2 = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btDesFolder2 = new System.Windows.Forms.Button();
             this.txtDesFolder2 = new System.Windows.Forms.TextBox();
@@ -46,6 +48,7 @@ namespace ToolMovingFiles
             this.btSouFolder2 = new System.Windows.Forms.Button();
             this.txtSouFolder2 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkCopyPath3 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btDesFolder3 = new System.Windows.Forms.Button();
             this.txtDesFolder3 = new System.Windows.Forms.TextBox();
@@ -57,9 +60,6 @@ namespace ToolMovingFiles
             this.btClear = new System.Windows.Forms.Button();
             this.btCopy = new System.Windows.Forms.Button();
             this.txtResult = new System.Windows.Forms.RichTextBox();
-            this.chkCopyPath1 = new System.Windows.Forms.CheckBox();
-            this.chkCopyPath2 = new System.Windows.Forms.CheckBox();
-            this.chkCopyPath3 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -82,6 +82,16 @@ namespace ToolMovingFiles
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Path Moving Files";
+            // 
+            // chkCopyPath1
+            // 
+            this.chkCopyPath1.AutoSize = true;
+            this.chkCopyPath1.Location = new System.Drawing.Point(112, 21);
+            this.chkCopyPath1.Name = "chkCopyPath1";
+            this.chkCopyPath1.Size = new System.Drawing.Size(15, 14);
+            this.chkCopyPath1.TabIndex = 9;
+            this.chkCopyPath1.UseVisualStyleBackColor = true;
+            this.chkCopyPath1.CheckedChanged += new System.EventHandler(this.chkCopyPath1_CheckedChanged);
             // 
             // label2
             // 
@@ -110,6 +120,7 @@ namespace ToolMovingFiles
             this.txtDesFolder1.Name = "txtDesFolder1";
             this.txtDesFolder1.Size = new System.Drawing.Size(250, 24);
             this.txtDesFolder1.TabIndex = 3;
+            this.txtDesFolder1.Leave += new System.EventHandler(this.txtDesFolder1_Leave);
             // 
             // label1
             // 
@@ -157,6 +168,16 @@ namespace ToolMovingFiles
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Path Moving Files";
             // 
+            // chkCopyPath2
+            // 
+            this.chkCopyPath2.AutoSize = true;
+            this.chkCopyPath2.Location = new System.Drawing.Point(112, 21);
+            this.chkCopyPath2.Name = "chkCopyPath2";
+            this.chkCopyPath2.Size = new System.Drawing.Size(15, 14);
+            this.chkCopyPath2.TabIndex = 10;
+            this.chkCopyPath2.UseVisualStyleBackColor = true;
+            this.chkCopyPath2.CheckedChanged += new System.EventHandler(this.chkCopyPath2_CheckedChanged);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -184,6 +205,7 @@ namespace ToolMovingFiles
             this.txtDesFolder2.Name = "txtDesFolder2";
             this.txtDesFolder2.Size = new System.Drawing.Size(250, 24);
             this.txtDesFolder2.TabIndex = 7;
+            this.txtDesFolder2.Leave += new System.EventHandler(this.txtDesFolder2_Leave);
             // 
             // label4
             // 
@@ -231,6 +253,16 @@ namespace ToolMovingFiles
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Path Moving Files";
             // 
+            // chkCopyPath3
+            // 
+            this.chkCopyPath3.AutoSize = true;
+            this.chkCopyPath3.Location = new System.Drawing.Point(112, 21);
+            this.chkCopyPath3.Name = "chkCopyPath3";
+            this.chkCopyPath3.Size = new System.Drawing.Size(15, 14);
+            this.chkCopyPath3.TabIndex = 11;
+            this.chkCopyPath3.UseVisualStyleBackColor = true;
+            this.chkCopyPath3.CheckedChanged += new System.EventHandler(this.chkCopyPath3_CheckedChanged);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -258,6 +290,7 @@ namespace ToolMovingFiles
             this.txtDesFolder3.Name = "txtDesFolder3";
             this.txtDesFolder3.Size = new System.Drawing.Size(250, 24);
             this.txtDesFolder3.TabIndex = 11;
+            this.txtDesFolder3.Leave += new System.EventHandler(this.txtDesFolder3_Leave);
             // 
             // label6
             // 
@@ -346,36 +379,6 @@ namespace ToolMovingFiles
             this.txtResult.Size = new System.Drawing.Size(329, 53);
             this.txtResult.TabIndex = 99;
             this.txtResult.Text = "";
-            // 
-            // chkCopyPath1
-            // 
-            this.chkCopyPath1.AutoSize = true;
-            this.chkCopyPath1.Location = new System.Drawing.Point(112, 21);
-            this.chkCopyPath1.Name = "chkCopyPath1";
-            this.chkCopyPath1.Size = new System.Drawing.Size(15, 14);
-            this.chkCopyPath1.TabIndex = 9;
-            this.chkCopyPath1.UseVisualStyleBackColor = true;
-            this.chkCopyPath1.CheckedChanged += new System.EventHandler(this.chkCopyPath1_CheckedChanged);
-            // 
-            // chkCopyPath2
-            // 
-            this.chkCopyPath2.AutoSize = true;
-            this.chkCopyPath2.Location = new System.Drawing.Point(112, 21);
-            this.chkCopyPath2.Name = "chkCopyPath2";
-            this.chkCopyPath2.Size = new System.Drawing.Size(15, 14);
-            this.chkCopyPath2.TabIndex = 10;
-            this.chkCopyPath2.UseVisualStyleBackColor = true;
-            this.chkCopyPath2.CheckedChanged += new System.EventHandler(this.chkCopyPath2_CheckedChanged);
-            // 
-            // chkCopyPath3
-            // 
-            this.chkCopyPath3.AutoSize = true;
-            this.chkCopyPath3.Location = new System.Drawing.Point(112, 21);
-            this.chkCopyPath3.Name = "chkCopyPath3";
-            this.chkCopyPath3.Size = new System.Drawing.Size(15, 14);
-            this.chkCopyPath3.TabIndex = 11;
-            this.chkCopyPath3.UseVisualStyleBackColor = true;
-            this.chkCopyPath3.CheckedChanged += new System.EventHandler(this.chkCopyPath3_CheckedChanged);
             // 
             // Main
             // 
